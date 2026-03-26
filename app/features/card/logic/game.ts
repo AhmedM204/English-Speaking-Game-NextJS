@@ -6,9 +6,18 @@ export default class Game {
     const randomIndex = Math.floor(Math.random() * questions.length);
 
     state.question = questions[randomIndex].question;
+    state.status = "idle";
+    state.currentTime = state.defaultTime;
+    state.buttonText = "Start";
+  }
+  public static start(state: IGameState) {
+    const randomIndex = Math.floor(Math.random() * questions.length);
+
+    state.question = questions[randomIndex].question;
     state.status = "working";
     state.currentTime = state.defaultTime;
     state.buttonText = "Pause";
+    state.ableToGetQuestion = true;
   }
 
   public static pause(state: IGameState) {

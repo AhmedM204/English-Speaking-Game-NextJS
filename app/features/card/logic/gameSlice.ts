@@ -11,6 +11,7 @@ export interface IGameState {
   status: gameStatus;
   buttonText: string;
   timeOption: TimeOption;
+  ableToGetQuestion: boolean;
 }
 
 const gameInitState: IGameState = {
@@ -20,6 +21,7 @@ const gameInitState: IGameState = {
   status: "idle",
   buttonText: "Start",
   timeOption: "60",
+  ableToGetQuestion: false,
 };
 
 export const gameSlice = createSlice({
@@ -27,6 +29,7 @@ export const gameSlice = createSlice({
   initialState: gameInitState,
   reducers: {
     getQuestion: Game.getQuestion,
+    start: Game.start,
     pause: Game.pause,
     continueGame: Game.continueGame,
     finish: Game.finish,
@@ -35,6 +38,13 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { getQuestion, pause, continueGame, finish, tick, setTime } =
-  gameSlice.actions;
+export const {
+  getQuestion,
+  start,
+  pause,
+  continueGame,
+  finish,
+  tick,
+  setTime,
+} = gameSlice.actions;
 export default gameSlice.reducer;

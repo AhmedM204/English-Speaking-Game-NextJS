@@ -10,10 +10,11 @@ import { AppleCustomTimeDialog } from "./appleCustomTimeDialog";
 import {
   continueGame,
   gameStatus,
-  getQuestion,
+  start,
   pause,
   setTime,
   TimeOption,
+  getQuestion,
 } from "./logic/gameSlice";
 import { AppleTimer } from "./appleTimer ";
 
@@ -24,6 +25,9 @@ export default function TimerAppUI() {
   const question = useSelector((state: any) => state.game.question);
   const buttonText = useSelector((state: any) => state.game.buttonText);
   const status: gameStatus = useSelector((state: any) => state.game.status);
+  const ableToGetQuestion: boolean = useSelector(
+    (state: any) => state.game.ableToGetQuestion,
+  );
   const timeOption: TimeOption = useSelector(
     (state: any) => state.game.timeOption,
   );
@@ -70,13 +74,12 @@ export default function TimerAppUI() {
             label={buttonText}
             variant="primary"
             onClick={() => {
-              if (status === "idle" || status === "finished")
-                dispatch(getQuestion());
+              if (status === "idle" || status === "finished") dispatch(start());
               else if (status === "working") dispatch(pause());
               else if (status === "paused") dispatch(continueGame());
             }}
           />
-          {status !== "idle" && (
+          {ableToGetQuestion && (
             <AppleButton
               label="Get Another Question"
               variant="secondary"
