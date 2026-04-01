@@ -28,11 +28,15 @@ export default function TimerAppUI() {
   const ableToGetQuestion: boolean = useSelector(
     (state: any) => state.game.ableToGetQuestion,
   );
+  const showStartButton: boolean = useSelector(
+    (state: any) => state.game.showStartButton,
+  );
   const timeOption: TimeOption = useSelector(
     (state: any) => state.game.timeOption,
   );
-
-  // Local UI State for Custom Dialog
+  const secondButtonVariant = useSelector(
+    (state: any) => state.game.secondButtonVariant,
+  );
 
   return (
     <div className="min-h-screen bg-[#F5F5F7] flex items-center justify-center p-6 font-sans">
@@ -44,19 +48,22 @@ export default function TimerAppUI() {
         <AppleTimer />
 
         <div className="flex flex-col gap-3 mt-2">
-          <AppleButton
-            label={buttonText}
-            variant="primary"
-            onClick={() => {
-              if (status === "idle" || status === "finished") dispatch(start());
-              else if (status === "working") dispatch(pause());
-              else if (status === "paused") dispatch(continueGame());
-            }}
-          />
+          {showStartButton && (
+            <AppleButton
+              label={buttonText}
+              variant="primary"
+              onClick={() => {
+                if (status === "idle" || status === "finished")
+                  dispatch(start());
+                else if (status === "working") dispatch(pause());
+                else if (status === "paused") dispatch(continueGame());
+              }}
+            />
+          )}
           {ableToGetQuestion && (
             <AppleButton
               label="Get Another Question"
-              variant="secondary"
+              variant={secondButtonVariant}
               onClick={() => {
                 dispatch(getQuestion());
               }}

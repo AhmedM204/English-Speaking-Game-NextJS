@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from "react";
 
-type ButtonVariant = "primary" | "secondary";
+export type ButtonVariant = "primary" | "secondary";
 
 // Extending standard button attributes so onClick, disabled, etc., work natively
 interface AppleButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

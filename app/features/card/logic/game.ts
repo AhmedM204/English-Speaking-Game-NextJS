@@ -6,9 +6,11 @@ export default class Game {
     const randomIndex = Math.floor(Math.random() * questions.length);
 
     state.question = questions[randomIndex].question;
-    state.status = "idle";
+    state.status = "working";
     state.currentTime = state.defaultTime;
-    state.buttonText = "Start";
+    state.buttonText = "Pause";
+    state.showStartButton = true;
+    state.secondButtonVariant = "secondary";
   }
   public static start(state: IGameState) {
     const randomIndex = Math.floor(Math.random() * questions.length);
@@ -42,6 +44,8 @@ export default class Game {
     if (state.currentTime === 0) {
       state.status = "finished";
       state.buttonText = "Get a new question!";
+      state.showStartButton = false;
+      state.secondButtonVariant = "primary";
     }
   }
 
