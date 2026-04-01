@@ -1,42 +1,26 @@
 "use client";
 
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AppleButton } from "./appleButton";
 import { AppleCard } from "./appleCard";
 import { AppleText } from "./appleText";
 import { AppleTimeSelector } from "./appleTimeSelector";
-import { AppleCustomTimeDialog } from "./appleCustomTimeDialog";
-import {
-  continueGame,
-  gameStatus,
-  start,
-  pause,
-  setTime,
-  TimeOption,
-  getQuestion,
-} from "./logic/gameSlice";
+import { continueGame, start, pause, getQuestion } from "./logic/gameSlice";
 import { AppleTimer } from "./appleTimer ";
+import useTimerAppUI from "./logic/useTimerAppUI";
 
 export default function TimerAppUI() {
   const dispatch = useDispatch();
 
-  // Redux State
-  const question = useSelector((state: any) => state.game.question);
-  const buttonText = useSelector((state: any) => state.game.buttonText);
-  const status: gameStatus = useSelector((state: any) => state.game.status);
-  const ableToGetQuestion: boolean = useSelector(
-    (state: any) => state.game.ableToGetQuestion,
-  );
-  const showStartButton: boolean = useSelector(
-    (state: any) => state.game.showStartButton,
-  );
-  const timeOption: TimeOption = useSelector(
-    (state: any) => state.game.timeOption,
-  );
-  const secondButtonVariant = useSelector(
-    (state: any) => state.game.secondButtonVariant,
-  );
+  const {
+    question,
+    buttonText,
+    status,
+    ableToGetQuestion,
+    showStartButton,
+    timeOption,
+    secondButtonVariant,
+  } = useTimerAppUI();
 
   return (
     <div className="min-h-screen bg-[#F5F5F7] flex items-center justify-center p-6 font-sans">
