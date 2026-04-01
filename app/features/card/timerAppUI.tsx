@@ -33,42 +33,16 @@ export default function TimerAppUI() {
   );
 
   // Local UI State for Custom Dialog
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [customTimeInput, setCustomTimeInput] = useState("120");
-
-  const handleTimeSelect = (option: TimeOption) => {
-    if (option === "custom") {
-      setIsDialogOpen(true);
-    } else {
-      // Convert string "30", "45", "60" to numbers and dispatch
-      dispatch(setTime({ option, time: parseInt(option, 10) }));
-    }
-  };
-
-  const handleCustomTimeSave = () => {
-    const timeInSeconds = parseInt(customTimeInput, 10);
-    if (!isNaN(timeInSeconds) && timeInSeconds > 0) {
-      dispatch(setTime({ option: "custom", time: timeInSeconds }));
-    }
-    setIsDialogOpen(false);
-  };
 
   return (
     <div className="min-h-screen bg-[#F5F5F7] flex items-center justify-center p-6 font-sans">
       <AppleCard>
-        {/* Time Selector */}
-        <AppleTimeSelector
-          selectedOption={timeOption}
-          onSelect={handleTimeSelect}
-        />
+        <AppleTimeSelector selectedOption={timeOption} />
 
-        {/* Text Section */}
         <AppleText question={question} />
 
-        {/* Timer Section */}
         <AppleTimer />
 
-        {/* Button Section */}
         <div className="flex flex-col gap-3 mt-2">
           <AppleButton
             label={buttonText}
@@ -90,15 +64,6 @@ export default function TimerAppUI() {
           )}
         </div>
       </AppleCard>
-
-      {/* Custom Time Dialog */}
-      <AppleCustomTimeDialog
-        isOpen={isDialogOpen}
-        onClose={() => setIsDialogOpen(false)}
-        value={customTimeInput}
-        onChange={setCustomTimeInput}
-        onSave={handleCustomTimeSave}
-      />
     </div>
   );
 }
