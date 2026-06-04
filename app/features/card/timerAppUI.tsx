@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import { AppleButton } from "./appleButton";
 import { AppleCard } from "./appleCard";
 import { AppleText } from "./appleText";
-import { AppleTimeSelector } from "./appleTimeSelector";
-import { continueGame, start, pause, getQuestion } from "./logic/gameSlice";
 import { AppleTimer } from "./appleTimer ";
+import { AppleTimeSelector } from "./appleTimeSelector";
+import { continueGame, getQuestion, pause, restTimer, start } from "./logic/gameSlice";
 import useTimerAppUI from "./logic/useTimerAppUI";
 
 export default function TimerAppUI() {
@@ -45,13 +45,25 @@ export default function TimerAppUI() {
             />
           )}
           {ableToGetQuestion && (
-            <AppleButton
-              label="Get Another Question"
-              variant={secondButtonVariant}
-              onClick={() => {
-                dispatch(getQuestion());
-              }}
-            />
+            <>
+              <AppleButton
+                label="Get Another Question"
+                variant={secondButtonVariant}
+                onClick={() => {
+                  dispatch(getQuestion());
+                }}
+              />
+
+              <AppleButton
+                label="Reset Timer"
+                variant={secondButtonVariant}
+                onClick={() => {
+                  dispatch(restTimer());
+                }}
+              />
+            </>
+
+
           )}
         </div>
       </AppleCard>

@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Game from "./game";
+import { createSlice } from "@reduxjs/toolkit";
 import { ButtonVariant } from "../appleButton";
+import Game from "./game";
 
 export type gameStatus = "idle" | "working" | "paused" | "finished";
 export type TimeOption = "30" | "45" | "60" | "custom";
@@ -41,6 +41,7 @@ export const gameSlice = createSlice({
     finish: Game.finish,
     tick: Game.tick,
     setTime: Game.setTime,
+    restTimer: Game.restTimer,
   },
 });
 
@@ -52,5 +53,6 @@ export const {
   finish,
   tick,
   setTime,
+  restTimer,
 } = gameSlice.actions;
 export default gameSlice.reducer;

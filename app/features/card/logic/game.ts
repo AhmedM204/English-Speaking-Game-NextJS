@@ -1,6 +1,6 @@
+import questions from "@/app/core/questions.json";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { IGameState, TimeOption } from "./gameSlice";
-import questions from "@/app/core/questions.json";
 export default class Game {
   public static getQuestion(state: IGameState) {
     const randomIndex = Math.floor(Math.random() * questions.length);
@@ -59,7 +59,6 @@ export default class Game {
     return `${paddedMins}:${paddedSecs}`;
   }
 
-  // NEW METHOD: Handles changing the time from the UI
   public static setTime(
     state: IGameState,
     action: PayloadAction<{ option: TimeOption; time: number }>,
@@ -70,5 +69,12 @@ export default class Game {
     if (state.status === "idle" || state.status === "finished") {
       state.currentTime = action.payload.time;
     }
+  }
+
+  public static restTimer(state: IGameState)
+  {
+    state.currentTime = state.defaultTime;
+    Game.pause(state);
+
   }
 }
