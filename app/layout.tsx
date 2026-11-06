@@ -30,7 +30,10 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/icon.png" sizes="32x32" />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+      {children}
+      <Analytics />
+      </body>
     </html>
   );
 }

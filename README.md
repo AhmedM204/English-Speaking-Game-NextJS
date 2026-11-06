@@ -7,6 +7,6 @@ A game that I built allowing people to practice speaking skill by getting topics
 ### With Friends
 join with 1 or more friends, press the button to get a question, keep speaking untill the time is up.
 > [!NOTE]
-> The deal with the question as topic, not a question needs a single answer
+> Deal with the question as topic, not a question needs a single answer
 ### With Yourself
 Start the timer, record your voice and keep tracking 
